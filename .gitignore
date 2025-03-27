@@ -1,0 +1,17 @@
+# Binaires compilés
+mycc
+*.out
+
+# Fichiers objets
+*.o
+
+# Fichiers générés
+out/*.c
+out/*.out
+
+# autres
+*~
+*.swp
+.DS_Store
+.vscode/
+.idea/
