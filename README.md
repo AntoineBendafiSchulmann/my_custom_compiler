@@ -68,7 +68,7 @@ my_custom_compiler/       # Code source du compilateur
 
 - Portée et environnement (scope, bloc)
 
-- ```for (...)``` + ```break```, continue
+- ```for (...)``` + ```break```, ```continue```
 
 - CLI améliorée : ```./mycc -o out.c```
 
