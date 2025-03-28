@@ -1,0 +1,3 @@
+print("hello world");
+print("c'est trop bien");
+print(123);

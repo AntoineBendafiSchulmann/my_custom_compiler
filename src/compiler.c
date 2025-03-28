@@ -3,6 +3,7 @@
 #include "parser/parser.h"
 #include "parser/ast.h"
 #include "codegen/codegen.h"
+#include "semantic/semantic.h"
 #include <stdio.h>
 
 int compile(const char *input_path, const char *output_path) {
@@ -21,7 +22,8 @@ int compile(const char *input_path, const char *output_path) {
 
     TokenList tokens = lex(input);
     ASTNode *ast = parse(&tokens);
-    generate_code(ast, output);
+    semantic_check(ast);
+    generate_code(ast, output);    
 
     fclose(input);
     fclose(output);

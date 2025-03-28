@@ -1,5 +1,6 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99 -Isrc -Isrc/lexer -Isrc/parser -Isrc/codegen -Isrc/utils
+CFLAGS = -Wall -Wextra -std=c99 -Isrc -Isrc/lexer -Isrc/parser -Isrc/codegen -Isrc/utils -Isrc/semantic
+
 
 SRC = \
 	src/main.c \
@@ -8,7 +9,8 @@ SRC = \
 	src/parser/parser.c \
 	src/parser/ast.c \
 	src/codegen/codegen.c \
-	src/utils/utils.c
+	src/utils/utils.c \
+	src/semantic/semantic.c
 
 OBJ = $(SRC:.c=.o)
 BIN = mycc

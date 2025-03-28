@@ -1,9 +1,10 @@
 #  My Custom Compiler
 
- Un compilateur écrit en C pour transformer un langage custom ```.mcc``` en C standard 
+Un compilateur écrit en C pour transformer un langage custom `.mcc` en C standard compilable avec `gcc`.
 
 ```
-my_custom_compiler/
+my_custom_compiler/       # Code source du compilateur
+
 ├── Makefile              # Script de compilation principal
 ├── README.md             # Documentation
 ├── .gitignore           
@@ -28,33 +29,70 @@ my_custom_compiler/
 │   └── utils/            # Fonctions utilitaires (log, erreurs...)
 │       ├── utils.c/h
 
-├── examples/             # Fichiers source en langage custom (.mcc)
-│   ├── hello.mcc         #  let + print
-│   └── math.mcc          # `x + y` (non supporté actuellement)
+├── examples/             # Fichiers source en langage .mcc
+│   ├── hello.mcc
+│   ├── math.mcc
+│   ├── while_loop.mcc
+│   ├── if_else.mcc
+│   ├── compare_ops.mcc
+│   └── hello_string.mcc
+        ect...
 
 ├── out/                  # Fichiers générés
-│   ├── hello.c           # code c généré à partir de hello.mcc
-│   ├── hello.out         # exécutable généré à partir de hello.mcc via gcc
-│   ├── math.c          
-│   └── math.out
+│   ├── *.c               # Code C généré
+│   └── *.out             # Exécutables compilés
 ```
-
 
 #### 🛠️ Fonctionnalités actuelles :
 
--  ```let x = 5;``` – Déclarations de variables entières
+- ✅ ```let x = 5;``` – Déclaration de variable
+- ✅ ```x = x + 1;``` – Affectation sans redéclaration
+- ✅ `let x = 5;` – Déclaration de variable
+- ✅ `x = x + 1;` – Affectation sans redéclaration
+- ✅ `let z = x + y;` – Déclaration avec expression
+- ✅ `print(x);` – Affichage de variables
+- ✅ `print("text");` – Affichage de chaînes de caractères
+- ✅ `+ - * /` – Opérations arithmétiques
+- ✅ `== != < > <= >=` – Comparateurs
+- ✅ `if (...) {}` + `else {}` – Conditions
+- ✅ `while (...) {}` – Boucles
+- ✅ Analyse sémantique : erreur si variable non déclarée
 
-- ```print(x);``` – Affichage d'une variable
-
-- ⚠️  ```let z = x + y```  – Non encore pris en charge (voir TODO)
 
 #### 🚧 TODO
-- Expressions binaires : ```x + y```
+-  ```print("x =", x);``` – Affichage multi-arguments
 
-- Structures de contrôle : ```if```, ```while```
+-  ```fn add(a, b) { return a + b; }``` – Fonctions utilisateur
 
-- Fonctions utilisateur : ```fn```, ```return```
+- Typage explicite (ex : int, bool, string)
 
-- Types : ```int```, ```bool```, etc.
+- Portée et environnement (scope, bloc)
+
+- ```for (...)``` + ```break```, continue
+
+- CLI améliorée : ```./mycc -o out.c```
+
+- Modules / import / gestion multi-fichiers .mcc
 
 
+## 🚀 Utilisation
+
+### compiler le compilateur
+```bash
+make clean && make
+```
+
+### compiler un fichier .mcc
+```bash
+./mycc examples/hello.mcc out/hello.c
+```
+
+### compiller  le C généré  
+```bash
+gcc out/hello.c -o out/hello.out
+```
+
+### Lance le programme
+```bash
+./out/hello.out
+```
